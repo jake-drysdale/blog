@@ -11,7 +11,7 @@ Supplementary material accompanying the paper "Style-based Drum Synthesis with G
 Neural audio synthesizers exploit deep learning as an alternative to traditional synthesizers that generate audio from hand-designed components such as oscillators and wavetables. For a neural audio synthesizer to be applicable to music creation, meaningful control over the output is essential. This paper provides an overview of an unsupervised approach to deriving useful feature controls learned by a generative model. A system for generation and transformation of drum samples using a style-based generative adversarial network (GAN) is proposed. The system provides functional control of style features of drum sounds based on principal component analysis (PCA) applied to the latent space. Additionally, we propose the use of an encoder trained to invert input drum sounds back to the latent space of the pre-trained GAN. We experiment with three modes of control and provide audio results on a supporting website. 
 
 
-delete this
+delete this...
 
 
 <center><h3>Code</h3></center>
