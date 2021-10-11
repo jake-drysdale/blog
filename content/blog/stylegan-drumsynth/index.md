@@ -1,13 +1,21 @@
 ---
-title: Style-based Adversarial Drum Synthesis and Inversion
+title: Style-based Drum Synthesis with GAN Inversion
 date: "2021-10-10"
 tags: [gans,drumsynth,ismir] 
 description: "Style-based Adversarial Drum Synthesis and Inversion"
 thumbnail: ./system-overview.png
 ---
 
-Neural audio synthesizers exploit deep learning as an alternative to traditional synthesizers that generate audio from hand-designed components such as oscillators and wavetables.
-This work provides an overview of an unsupervised approach to deriving useful feature controls learned by a generative model. A system for generating and manipulating drum samples using a style-based generative adversarial network is presented, and functional feature controls are discovered based on principal component analysis applied to the latent space. Additionally, an encoder is trained to invert an input drum sound back to the latent space of the pretrained GAN. The system leads to an automatically learned, unsupervised separation of high-level attributes (e.g., pitch, envelope shape), and it enables scale-specific control of the synthesis. delete
+Supplementary material accompanying the paper "Style-based Drum Synthesis with GAN Inversion" for the International Society for Music Information Retrieval (ISMIR) late-breaking/demo contributions.
+
+Neural audio synthesizers exploit deep learning as an alternative to traditional synthesizers that generate audio from hand-designed components such as oscillators and wavetables. For a neural audio synthesizer to be applicable to music creation, meaningful control over the output is essential. This paper provides an overview of an unsupervised approach to deriving useful feature controls learned by a generative model. A system for generation and transformation of drum samples using a style-based generative adversarial network (GAN) is proposed. The system provides functional control of style features of drum sounds based on principal component analysis (PCA) applied to the latent space. Additionally, we propose the use of an encoder trained to invert input drum sounds back to the latent space of the pre-trained GAN. We experiment with three modes of control and provide audio results on a supporting website. 
+
+
+delete this
+
+
+<center><h3>Code</h3></center>
+The GitHub repository for this project is available here. The repo contains instructions for installation and usage for a TensorFlow implementation of the style-based drum synthesiser and audio inversion network. 
 
 
 <center><h3>Audio Examples</h3></center>
