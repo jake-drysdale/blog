@@ -7,8 +7,7 @@ thumbnail: ./system-overview.png
 ---
 
 Neural audio synthesizers exploit deep learning as an alternative to traditional synthesizers that generate audio from hand-designed components such as oscillators and wavetables.
-This work provides an overview of an unsupervised approach to deriving useful feature controls learned by a generative model. A system for generating and manipulating drum samples using a style-based generative adversarial network is presented, and functional feature controls are discovered based on principal component analysis applied to the latent space. Additionally, an encoder is trained to invert an input drum sound back to the latent space of the pretrained GAN. The system leads to an automatically learned, unsupervised separation of high-level attributes (e.g., pitch, envelope shape), and it enables scale-specific control of the synthesis.
-
+This work provides an overview of an unsupervised approach to deriving useful feature controls learned by a generative model. A system for generating and manipulating drum samples using a style-based generative adversarial network is presented, and functional feature controls are discovered based on principal component analysis applied to the latent space. Additionally, an encoder is trained to invert an input drum sound back to the latent space of the pretrained GAN. The system leads to an automatically learned, unsupervised separation of high-level attributes (e.g., pitch, envelope shape), and it enables scale-specific control of the synthesis. delete
 
 
 <center><h3>Audio Examples</h3></center>
