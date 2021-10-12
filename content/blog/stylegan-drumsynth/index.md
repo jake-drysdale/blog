@@ -6,16 +6,17 @@ description: "Style-based Adversarial Drum Synthesis and Inversion"
 thumbnail: ./system-overview.png
 ---
 
-Supplementary material accompanying the paper "Style-based Drum Synthesis with GAN Inversion" for the International Society for Music Information Retrieval (ISMIR) late-breaking/demo contributions.
 
 Neural audio synthesizers exploit deep learning as an alternative to traditional synthesizers that generate audio from hand-designed components such as oscillators and wavetables. For a neural audio synthesizer to be applicable to music creation, meaningful control over the output is essential. This paper provides an overview of an unsupervised approach to deriving useful feature controls learned by a generative model. A system for generation and transformation of drum samples using a style-based generative adversarial network (GAN) is proposed. The system provides functional control of style features of drum sounds based on principal component analysis (PCA) applied to the latent space. Additionally, we propose the use of an encoder trained to invert input drum sounds back to the latent space of the pre-trained GAN. We experiment with three modes of control and provide audio results on a supporting website. 
 
+Following is the supplementary material accompanying the late-breaking/demo "Style-based Drum Synthesis with GAN Inversion" for the International Society for Music Information Retrieval (ISMIR).
 
-delete this...
+
 
 
 <center><h3>Code</h3></center>
-The GitHub repository for this project is available here. The repo contains instructions for installation and usage for a TensorFlow implementation of the style-based drum synthesiser and audio inversion network. 
+
+The GitHub repository for this project is available **[here](https://github.com/SoMA-group/stylegan-drumsynth)**. The repo contains instructions for installation and usage for a TensorFlow implementation of the style-based drum synthesiser and audio inversion network. 
 
 
 <center><h3>Audio Examples</h3></center>
@@ -98,7 +99,6 @@ was applied to mix the sounds.
 
 Below are some examples of the systems capacity to generate 1 bar loops. A dataset of 130bpm, 1 bar drum loops was complied and then sliced into 16th note segments. The system is conditioned on each of these segments (giving a total of 16 classes) and then trained for a number of iterations. A loop can be created by generating a waveform for each of the 16 classes and then concatentating them together. 
 
-<img src="./generation-conditions.png" alt="drawing" width="200" height="100"/>
 
 
 
