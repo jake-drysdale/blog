@@ -151,31 +151,47 @@ was applied to mix the sounds.
 
 ##### Interpolating between two arbitrary drum sounds
 
-Below are some examples of the systems capacity reconstruct two arbitrary and performing interpolation between them. 
+Below are some examples of the systems capacity reconstruct two arbitrary and performing interpolation between them. (Left) source A, (right) source 2, and (below) interpolation between A and B. (under construction)
 
 
 <figure>
     <figcaption>Kick-to-kick interpolation</figcaption>
     <audio controls
-		src="./dafx20_audio/beat_demos/train11.wav">
+		src="">
+	</audio>
+    <audio controls
+		src="">
+	</audio>
+    <audio controls
+		src="">
 	</audio>
 </figure>
 
 <figure>
     <figcaption>Snare-to-snare interpolation</figcaption>
     <audio controls
-		src="./dafx20_audio/beat_demos/train12.wav">
+		src="">
+	</audio>
+    <audio controls
+		src="">
+	</audio>
+    <audio controls
+		src="">
 	</audio>
 </figure>
 
 <figure>
-    <figcaption>Hat-to-hat interpolation</figcaption>
+    <figcaption>hat-to-hat interpolation</figcaption>
     <audio controls
-		src="./dafx20_audio/beat_demos/gen11.wav">
+		src="">
+	</audio>
+    <audio controls
+		src="">
+	</audio>
+    <audio controls
+		src="">
 	</audio>
 </figure>
-
-
 
 Some more examples can be found here: https://soundcloud.com/beatsbygan
 
@@ -258,173 +274,6 @@ Interpolating between Cymbal A and Cymbal B.
 		src="./dafx20_audio/interpolation_demos/a_b_demos/demo3_interpolate.wav">
 	</audio>
 </figure>
-
-
-
-
-###### Linear interpolation
-
-More examples of linear interpolation between two random points.
-
-<figure>
-    <figcaption>Kick drums </figcaption>
-    
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/linear_interpolation/kick_1.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/linear_interpolation/kick_2.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/linear_interpolation/kick_3.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/linear_interpolation/kick_4.wav">
-		
-	</audio>
-	
-
-</figure>
-
-<figure>
-    <figcaption>Snare drums </figcaption>
-    
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/linear_interpolation/snare_1.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/linear_interpolation/snare_2.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/linear_interpolation/snare_3.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/linear_interpolation/snare_4.wav">
-		
-	</audio>
-	
-
-</figure>
-
-<figure>
-    <figcaption>Cymbals </figcaption>
-    
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/linear_interpolation/cymb_1.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/linear_interpolation/cymb_2.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/linear_interpolation/cymb_3.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/linear_interpolation/cymb_4.wav">
-		
-	</audio>
-	
-</figure>
-
-
-###### Spherical interpolation 
-
-Examples of spherical interpolation between two random points.
-
-<figure>
-    <figcaption>Kick drums </figcaption>
-    
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/spherical_interpolation/kick_1.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/spherical_interpolation/kick_2.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/spherical_interpolation/kick_3.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/spherical_interpolation/kick_4.wav">
-		
-	</audio>
-	
-
-</figure>
-
-<figure>
-    <figcaption>Snare drums </figcaption>
-    
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/spherical_interpolation/snare_1.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/spherical_interpolation/snare_2.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/spherical_interpolation/snare_5.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/spherical_interpolation/snare_4.wav">
-		
-	</audio>
-	
-
-</figure>
-
-<figure>
-    <figcaption>Cymbals </figcaption>
-    
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/spherical_interpolation/cymb_1.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/spherical_interpolation/cymb_2.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/spherical_interpolation/cymb_3.wav">
-		
-	</audio>
-	
-    <audio controls
-		src="./dafx20_audio/interpolation_demos/spherical_interpolation/cymb_4.wav">
-		
-	</audio>
-	
-</figure>
-
 
 
 
