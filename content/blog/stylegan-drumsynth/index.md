@@ -67,30 +67,30 @@ An A-B comparsion of encoding audio input (A) with the audio inversion network a
 <figure>
     <figcaption>Kick drums</figcaption>
     <audio controls
-		src="./dafx20_audio/real/realkicks.wav">
+		src="./LBD_audio/kick_encoder_A.wav">
 	</audio>
     <audio controls
-		src="./dafx20_audio/gen/genkicks.wav">
+		src="./LBD_audio/kick_encoder_B.wav">
 	</audio>
 </figure>
 
 <figure>
     <figcaption>Snare drums</figcaption>
     <audio controls
-		src="./dafx20_audio/real/realsnares.wav">
+		src="./LBD_audio/snare_encoder_A.wav">
 	</audio>
     <audio controls
-		src="./dafx20_audio/gen/gensnares.wav">
+		src="./LBD_audio/snare_encoder_B.wav">
 	</audio>
 </figure>
 
 <figure>
     <figcaption>Cymbals</figcaption>
     <audio controls
-		src="./dafx20_audio/real/realcymbals.wav">
+		src="./LBD_audio/hat_encoder_A.wav">
 	</audio>
     <audio controls
-		src="./dafx20_audio/gen/gencymbals.wav">
+		src="./LBD_audio/hat_encoder_B.wav">
 	</audio>
 </figure>
 
@@ -138,6 +138,13 @@ was applied to mix the sounds.
     <figcaption>Track 2: Drum and bass demo</figcaption>
     <audio controls
 		src="./dafx20_audio/track_demos/drumandbassdemo.wav">
+	</audio>
+</figure>
+
+<figure>
+    <figcaption>Track 3: Breakbeat interpolation demo</figcaption>
+    <audio controls
+		src="./LBD_audio/break-morphing.wav">
 	</audio>
 </figure>
 
