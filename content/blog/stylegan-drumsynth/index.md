@@ -37,7 +37,7 @@ An comparison between: (left) a random selection of 30 examples from the dataset
 		src="./dafx20_audio/real/realkicks.wav">
 	</audio>
     <audio controls
-		src="./dafx20_audio/gen/genkicks.wav">
+		src="./LBD_audio/kick_generations.wav">
 	</audio>
 </figure>
 
@@ -47,7 +47,7 @@ An comparison between: (left) a random selection of 30 examples from the dataset
 		src="./dafx20_audio/real/realsnares.wav">
 	</audio>
     <audio controls
-		src="./dafx20_audio/gen/gensnares.wav">
+		src="./LBD_audio/snare_generations.wav">
 	</audio>
 </figure>
 
@@ -57,7 +57,7 @@ An comparison between: (left) a random selection of 30 examples from the dataset
 		src="./dafx20_audio/real/realcymbals.wav">
 	</audio>
     <audio controls
-		src="./dafx20_audio/gen/gencymbals.wav">
+		src="./LBD_audio/hat_generations.wav">
 	</audio>
 </figure>
 
