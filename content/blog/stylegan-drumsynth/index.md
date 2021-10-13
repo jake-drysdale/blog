@@ -7,9 +7,14 @@ thumbnail: ./system-overview.png
 ---
 
 
+
+This blog post contains the supplementary material accompanying the late-breaking/demo:  "Style-based Drum Synthesis with GAN Inversion" for the International Society for Music Information Retrieval (ISMIR).
+
+<center><h3>Abstract</h3></center>
+
 Neural audio synthesizers exploit deep learning as an alternative to traditional synthesizers that generate audio from hand-designed components such as oscillators and wavetables. For a neural audio synthesizer to be applicable to music creation, meaningful control over the output is essential. This paper provides an overview of an unsupervised approach to deriving useful feature controls learned by a generative model. A system for generation and transformation of drum samples using a style-based generative adversarial network (GAN) is proposed. The system provides functional control of style features of drum sounds based on principal component analysis (PCA) applied to the latent space. Additionally, we propose the use of an encoder trained to invert input drum sounds back to the latent space of the pre-trained GAN. We experiment with three modes of control and provide audio results on a supporting website. 
 
-Following is the supplementary material accompanying the late-breaking/demo "Style-based Drum Synthesis with GAN Inversion" for the International Society for Music Information Retrieval (ISMIR).
+
 
 
 
@@ -21,39 +26,16 @@ The GitHub repository for this project is available **[here](https://github.com/
 
 <center><h3>Audio Examples</h3></center>
 
-Results accompanying the paper "Adversarial Synthesis of Drum sounds" for the International Conference on Digital Audio Effects 2020.
-
 # <center>
 
-#### Training Data
-A random selection of 30 examples from the dataset used in training.
+#### Training Data Vs Generations
+An comparison between: (left) a random selection of 30 examples from the dataset used in training and, (right) a random selection of drum sound generations.
 
 <figure>
     <figcaption>Kick drums</figcaption>
     <audio controls
 		src="./dafx20_audio/real/realkicks.wav">
 	</audio>
-</figure>
-
-<figure>
-    <figcaption>Snare drums</figcaption>
-    <audio controls
-		src="./dafx20_audio/real/realsnares.wav">
-	</audio>
-</figure>
-
-<figure>
-    <figcaption>Cymbals</figcaption>
-    <audio controls
-		src="./dafx20_audio/real/realcymbals.wav">
-	</audio>
-</figure>
-
-#### Generations
-A random selection of 30 examples from the generated data.
-
-<figure>
-    <figcaption>Kick drums</figcaption>
     <audio controls
 		src="./dafx20_audio/gen/genkicks.wav">
 	</audio>
@@ -62,6 +44,9 @@ A random selection of 30 examples from the generated data.
 <figure>
     <figcaption>Snare drums</figcaption>
     <audio controls
+		src="./dafx20_audio/real/realsnares.wav">
+	</audio>
+    <audio controls
 		src="./dafx20_audio/gen/gensnares.wav">
 	</audio>
 </figure>
@@ -69,9 +54,70 @@ A random selection of 30 examples from the generated data.
 <figure>
     <figcaption>Cymbals</figcaption>
     <audio controls
+		src="./dafx20_audio/real/realcymbals.wav">
+	</audio>
+    <audio controls
 		src="./dafx20_audio/gen/gencymbals.wav">
 	</audio>
 </figure>
+
+#### Audio Inversion Network
+An A-B comparsion of encoding audio input (A) with the audio inversion network and drum sound generations (B) with the inverted latent code. (Left) the audio input and, (right) the corresponding generation.
+
+<figure>
+    <figcaption>Kick drums</figcaption>
+    <audio controls
+		src="./dafx20_audio/real/realkicks.wav">
+	</audio>
+    <audio controls
+		src="./dafx20_audio/gen/genkicks.wav">
+	</audio>
+</figure>
+
+<figure>
+    <figcaption>Snare drums</figcaption>
+    <audio controls
+		src="./dafx20_audio/real/realsnares.wav">
+	</audio>
+    <audio controls
+		src="./dafx20_audio/gen/gensnares.wav">
+	</audio>
+</figure>
+
+<figure>
+    <figcaption>Cymbals</figcaption>
+    <audio controls
+		src="./dafx20_audio/real/realcymbals.wav">
+	</audio>
+    <audio controls
+		src="./dafx20_audio/gen/gencymbals.wav">
+	</audio>
+</figure>
+
+Additionally, the examples below demonstrate the systems capacity to generate drum sounds from alternative audio inputs such as beatboxing and sliced breakbeats. 
+
+<figure>
+    <figcaption>Beatbox to drum sound</figcaption>
+    <audio controls
+		src="./LBD_audio/beatbox_to_gan.wav">
+	</audio>
+</figure>
+
+<figure>
+    <figcaption>Hip-hop breakbeat to drum sound</figcaption>
+    <audio controls
+		src="./LBD_audio/hiphop_to_gan.wav">
+	</audio>
+</figure>
+
+<figure>
+    <figcaption>Amen break to drum sound</figcaption>
+    <audio controls
+		src="./LBD_audio/amen_to_gan.wav">
+	</audio>
+</figure>
+
+
 
 #### Usage demonstration
 
@@ -95,48 +141,32 @@ was applied to mix the sounds.
 	</audio>
 </figure>
 
-##### Generating Drum Loops
 
-Below are some examples of the systems capacity to generate 1 bar loops. A dataset of 130bpm, 1 bar drum loops was complied and then sliced into 16th note segments. The system is conditioned on each of these segments (giving a total of 16 classes) and then trained for a number of iterations. A loop can be created by generating a waveform for each of the 16 classes and then concatentating them together. 
+##### Interpolating between two arbitrary drum sounds
 
-
+Below are some examples of the systems capacity reconstruct two arbitrary and performing interpolation between them. 
 
 
 <figure>
-    <figcaption>Training loop example 1</figcaption>
+    <figcaption>Kick-to-kick interpolation</figcaption>
     <audio controls
 		src="./dafx20_audio/beat_demos/train11.wav">
 	</audio>
 </figure>
 
 <figure>
-    <figcaption>Training loop example 2</figcaption>
+    <figcaption>Snare-to-snare interpolation</figcaption>
     <audio controls
 		src="./dafx20_audio/beat_demos/train12.wav">
 	</audio>
 </figure>
 
 <figure>
-    <figcaption>Generated loop example 1</figcaption>
+    <figcaption>Hat-to-hat interpolation</figcaption>
     <audio controls
 		src="./dafx20_audio/beat_demos/gen11.wav">
 	</audio>
 </figure>
-
-<figure>
-    <figcaption>Generated loop example 2</figcaption>
-    <audio controls
-		src="./dafx20_audio/beat_demos/gen12.wav">
-	</audio>
-</figure>
-
-<figure>
-    <figcaption>Interpolating between two different loops</figcaption>
-    <audio controls
-		src="./dafx20_audio/beat_demos/slerp1.wav">
-	</audio>
-</figure>
-
 
 
 
