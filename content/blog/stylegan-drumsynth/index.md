@@ -29,35 +29,35 @@ The GitHub repository for this project is available **[here](https://github.com/
 # <center>
 
 #### Training Data Vs Generations
-An comparison between: (left) a random selection of 30 examples from the dataset used in training and, (right) a random selection of drum sound generations.
+An comparison between: (left) a random selection of some examples from the dataset used in training and, (right) a random selection of drum sound generations.
 
 <figure>
     <figcaption>Kick drums</figcaption>
     <audio controls
-		src="./dafx20_audio/real/realkicks.wav">
+		src="./LBD_audio/kicks_real.wav">
 	</audio>
     <audio controls
-		src="./LBD_audio/kick_generations.wav">
+		src="./LBD_audio/kick_generations_demo.wav">
 	</audio>
 </figure>
 
 <figure>
     <figcaption>Snare drums</figcaption>
     <audio controls
-		src="./dafx20_audio/real/realsnares.wav">
+		src="./LBD_audio/snares_real.wav">
 	</audio>
     <audio controls
-		src="./LBD_audio/snare_generations.wav">
+		src="./LBD_audio/snare_generations_demo.wav">
 	</audio>
 </figure>
 
 <figure>
     <figcaption>Cymbals</figcaption>
     <audio controls
-		src="./dafx20_audio/real/realcymbals.wav">
+		src="./LBD_audio/hats_real.wav">
 	</audio>
     <audio controls
-		src="./LBD_audio/hat_generations.wav">
+		src="./LBD_audio/hat_generations_demo.wav">
 	</audio>
 </figure>
 
