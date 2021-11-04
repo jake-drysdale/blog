@@ -3,12 +3,14 @@ title: Style-based Drum Synthesis with GAN Inversion
 date: "2021-10-10"
 tags: [gans,drumsynth,ismir] 
 description: "Style-based Adversarial Drum Synthesis and Inversion"
-thumbnail: ./system-overview.png
+thumbnail: ./system-overviewv2.png
 ---
+Drysdale, J. and Tomczak, M. and J. Hockman. 2021. Style-based Drum Synthesis with GAN Inversion. 22nd International Society for Music Information Retrieval Conference Late-breaking Demo.
+[[paper](./lbd_paper.pdf), 
+[poster](./lbd_poster.pdf)]
 
 
-
-This blog post contains the supplementary material accompanying the late-breaking/demo:  "Style-based Drum Synthesis with GAN Inversion" for the International Society for Music Information Retrieval (ISMIR).
+This blog post contains the supplementary material accompanying the late-breaking demo:  "Style-based Drum Synthesis with GAN Inversion" for the International Society for Music Information Retrieval (ISMIR).
 
 <center><h3>Abstract</h3></center>
 
@@ -16,12 +18,14 @@ Neural audio synthesizers exploit deep learning as an alternative to traditional
 
 
 
-
+![training_procedure](./training_fig.png)
 
 
 <center><h3>Code</h3></center>
 
 The GitHub repository for this project is available **[here](https://github.com/SoMA-group/stylegan-drumsynth)**. The repo contains instructions for installation and usage for a TensorFlow implementation of the style-based drum synthesiser and audio inversion network. 
+
+
 
 
 <center><h3>Audio Examples</h3></center>
@@ -62,7 +66,11 @@ An comparison between: (left) a random selection of some examples from the datas
 </figure>
 
 #### Audio Inversion Network
+
+![inversion_network](./inversion_network.png)
+
 An A-B comparsion of encoding audio input (A) with the audio inversion network and drum sound generations (B) with the inverted latent code. (Left) the audio input and, (right) the corresponding generation.
+
 
 <figure>
     <figcaption>Kick drums</figcaption>
@@ -201,7 +209,7 @@ Some more examples can be found here: https://soundcloud.com/beatsbygan
 
 The proposed system learns to map points in the latent space to the generated waveforms. The structure of the latent space can be explored by interpolating between points in the space. For the following experiments, the GAN was trained with a latent space dimensionality of size 3.
 
-![z_space_fig](./z_space_fig.png)
+![z_space_fig](./z_spacev2.png)
 
 Figure 2: Interpolation in the latent space for kick drum generation. Kick drums are generated for each point along linear 
 pathsthrough the latent space (left). Paths are colour coded and subsequent generated audio appears across rows (right).
