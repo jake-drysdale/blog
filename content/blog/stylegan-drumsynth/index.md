@@ -7,7 +7,7 @@ thumbnail: ./system-overviewv2.png
 ---
 Drysdale, J. and Tomczak, M. and J. Hockman. 2021. Style-based Drum Synthesis with GAN Inversion. 22nd International Society for Music Information Retrieval Conference Late-breaking Demo.
 [[paper](./lbd_paper.pdf), 
-[poster](./lbd_poster.pdf)]
+[poster](./lbd_posterv2.pdf)]
 
 
 This blog post contains the supplementary material accompanying the late-breaking demo:  "Style-based Drum Synthesis with GAN Inversion" for the International Society for Music Information Retrieval (ISMIR).
