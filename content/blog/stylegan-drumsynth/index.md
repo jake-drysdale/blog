@@ -6,7 +6,7 @@ description: "Style-based Adversarial Drum Synthesis and Inversion"
 thumbnail: ./system-overviewv2.png
 ---
 Drysdale, J. and Tomczak, M. and J. Hockman. 2021. Style-based Drum Synthesis with GAN Inversion. 22nd International Society for Music Information Retrieval Conference Late-breaking Demo.
-[[paper](./lbd_paper.pdf), 
+[[paper](https://archives.ismir.net/ismir2021/latebreaking/000041.pdf), 
 [poster](./lbd_posterv2.pdf)]
 
 
