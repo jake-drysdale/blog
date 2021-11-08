@@ -7,8 +7,7 @@ thumbnail: ./system-overview.png
 ---
 
 
-
-Hardcore, jungle and drum and bass (HJDB) are a group of dance music genres that can be characterised by their use of fast-paced drums known as breakbeats. Breakbeats are percussion-only passages that are primarily sourced from samples of Funk and Jazz recordings from 1960s to 1980s. HJDB producers repurpose breakbeat samples by segmentation and resequencing. Advancements in audio production and digital sampling technologies has allowed for the development of audio manipulation techniques that are commonly used by HJDB producers such as time-stretching, pitch modification, distortion. In this research, a system for manipulating breakbeats using a generative adversarial network (GAN) is presented. 
+Breakbeats are percussion-only passages that are primarily sourced from samples of Funk and Jazz recordings from 1960s to 1980s. Electronic music producers often repurpose breakbeat samples by segmentation, resequencing and further manipulation using audio effects. In this research, a system for manipulating breakbeats using a generative adversarial network (GAN) is presented. A dataset of some popular breakbeats was collected and then augmented through time-stretching, pitch modification, and distortion to increase the number of training examples. 
 
 
 
