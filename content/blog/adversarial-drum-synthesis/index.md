@@ -7,7 +7,6 @@ thumbnail: ./brief-system-overview.png
 ---
 Drysdale, J. and Tomczak, M. and J. Hockman. 2020. Adversarial synthesis of drum sounds. In Proceedings of the 23nd International Conference on Digital Audio Effects, Vienna, Austria.
 
-
 [[pdf](https://dafx2020.mdw.ac.at/proceedings/papers/DAFx2020_paper_45.pdf), 
 [presentation](https://dafx2020.mdw.ac.at/proceedings/presentations/paper_45.mp4)]
 
