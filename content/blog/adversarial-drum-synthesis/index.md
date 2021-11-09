@@ -394,5 +394,25 @@ Examples of spherical interpolation between two random points.
 
 
 
- 
+## References
+
+| **[1]** |                  **[Drysdale, J., M. Tomczak, J. Hockman, Adversarial Synthesis of Drum Sounds. Proceedings of the 23rd International Conference on Digital Audio Effects (DAFX), 2020.](https://dafx2020.mdw.ac.at/proceedings/papers/DAFx2020_paper_45.pdf)**|
+| :---- | :--- |
+
+```
+@inproceedings{drysdale2020ads,
+  title={Adversarial synthesis of drum sounds},
+  author={Drysdale, Jake and Tomczak, Maciej and Hockman, Jason},
+  booktitle = {Proceedings of the International Conference on Digital Audio Effects 
+  (DAFx)},
+  year={2020}
+}
+```
+
+
+## Help
+
+Any questions please feel free to contact me on jake.drysdale@bcu.ac.uk
+
+
 
