@@ -156,7 +156,7 @@ was applied to mix the sounds.
 	</audio>
 </figure>
 
-
+<!---
 ##### Interpolating between two arbitrary drum sounds
 
 Below are some examples of the systems capacity reconstruct two arbitrary and performing interpolation between them. (Left) source A, (right) source 2, and (below) interpolation between A and B. (under construction)
@@ -200,14 +200,14 @@ Below are some examples of the systems capacity reconstruct two arbitrary and pe
 		src="">
 	</audio>
 </figure>
-
+--->
 Some more examples can be found here: https://soundcloud.com/beatsbygan
 
 
 
 #### Interpolation demonstration
 
-The proposed system learns to map points in the latent space to the generated waveforms. The structure of the latent space can be explored by interpolating between points in the space. For the following experiments, the GAN was trained with a latent space dimensionality of size 3.
+The proposed system learns to map points in the latent space to the generated waveforms. The structure of the latent space can be explored by interpolating between points in the space.
 
 ![z_space_fig](./z_spacev2.png)
 
