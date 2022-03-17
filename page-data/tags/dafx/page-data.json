@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tag-index-js",
+    "path": "/tags/dafx/",
+    "result": {"data":{"site":{"siteMetadata":{"title":"Jake Drysdale"}},"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"excerpt":"Drysdale, J. and Tomczak, M. and J. Hockman. 2020. Adversarial synthesis of drum sounds. In Proceedings of the 23nd International Conference…","fields":{"slug":"/adversarial-drum-synthesis/"},"frontmatter":{"date":"July 26, 2020","title":"Adversarial Synthesis of Drum Sounds","description":"Adversarial Synthesis of Drum Sounds","tags":["gans","drumsynth","dafx"],"thumbnail":{"childImageSharp":{"fluid":{"src":"/blog/static/06749f591793d3fcccf92232de58d679/c02ec/brief-system-overview.png","originalName":"brief-system-overview.png"}}}}}}]}},"pageContext":{"tag":"dafx"}},
+    "staticQueryHashes": ["63159454"]}

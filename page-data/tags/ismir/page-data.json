@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tag-index-js",
+    "path": "/tags/ismir/",
+    "result": {"data":{"site":{"siteMetadata":{"title":"Jake Drysdale"}},"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"excerpt":"Drysdale, J. and Tomczak, M. and J. Hockman. 2021. Style-based Drum Synthesis with GAN Inversion. In Extended Abstracts for the Late…","fields":{"slug":"/stylegan-drumsynth/"},"frontmatter":{"date":"October 10, 2021","title":"Style-based Drum Synthesis with GAN Inversion","description":"Style-based Adversarial Drum Synthesis and GAN Inversion","tags":["gans","drumsynth","ismir"],"thumbnail":{"childImageSharp":{"fluid":{"src":"/blog/static/a028acdce9731fb98fa789724cc1e8bf/c02ec/system-overviewv3.png","originalName":"system-overviewv3.png"}}}}}}]}},"pageContext":{"tag":"ismir"}},
+    "staticQueryHashes": ["63159454"]}

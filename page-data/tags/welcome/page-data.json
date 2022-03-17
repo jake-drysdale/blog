@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tag-index-js",
+    "path": "/tags/welcome/",
+    "result": {"data":{"site":{"siteMetadata":{"title":"Jake Drysdale"}},"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"excerpt":"Hello and welcome to my research blog. I am currently a PhD student in the Digital Media Technology Lab (DMT Lab) at Birmingham City…","fields":{"slug":"/hello-world/"},"frontmatter":{"date":"July 20, 2020","title":"Welcome!","description":"Welcome","tags":["hello","welcome"],"thumbnail":{"childImageSharp":{"fluid":{"src":"/blog/static/0ce6ddc3d0695d2ac0cfec3a9ef40d94/c02ec/dj_shot.png","originalName":"dj_shot.png"}}}}}}]}},"pageContext":{"tag":"welcome"}},
+    "staticQueryHashes": ["63159454"]}

@@ -1,0 +1,1000 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jake Drysdale]]></title><description><![CDATA[Research Blog]]></description><link>https://jake-drysdale.github.io/blog</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 17 Mar 2022 17:19:18 GMT</lastBuildDate><item><title><![CDATA[Improved Automatic Instrumentation Role Classification and Structural Analysis for Electronic Music Production]]></title><description><![CDATA[Modern loop-based electronic music (EM) is created through the activation of short audio recordings of instruments designed for seamless…]]></description><link>https://jake-drysdale.github.io/blog/in-the-loop/</link><guid isPermaLink="false">https://jake-drysdale.github.io/blog/in-the-loop/</guid><pubDate>Thu, 17 Mar 2022 00:00:00 GMT</pubDate><content:encoded>&lt;!--- Drysdale, J. and Ramires, A. and Fonseca, E. and Font, F. and Serra, X. and J. Hockman. 2021. Adversarial synthesis of drum sounds. In Proceedings of the 22nd International Society for Music Information Retrieval, Online. --&gt;
+&lt;!---####Improved Automatic Instrumentation Role Classification and Structural Analysis for Electronic Music Production --&gt;
+&lt;!---&lt;center&gt;&lt;h3&gt;Improved Automatic Instrumentation Role Classification and Structural Analysis for Electronic Music Production&lt;/h3&gt;&lt;/center&gt;--&gt;
+&lt;!---[[pdf](https://dafx2020.mdw.ac.at/proceedings/papers/DAFx2020_paper_45.pdf),
+[presentation](https://dafx2020.mdw.ac.at/proceedings/presentations/paper_45.mp4)]--&gt;
+&lt;p&gt;Modern loop-based electronic music (EM) is created through the activation of short audio recordings of instruments designed for seamless repetition—or loops.
+In this work, we aim to label loops into key structural groups such as bass, percussion or melodies by the role they occupy in a piece of music. For this, we use a task called automatic instrumentation role classification (AIRC).&lt;/p&gt;
+&lt;p&gt;These labels assist EM producers in organizing and identifying compatible loops within large unstructured audio databases. While annotating the audio files by hand is hard work, automatic classification allows for fast and scalable generation of these labels.&lt;/p&gt;
+&lt;p&gt;In this work, we experimented with several deep-learning architectures and proposed a data augmentation method which allowed us to reach a high-accuracy classification.&lt;/p&gt;
+&lt;p&gt;Besides the obvious task of classifying instrumentation roles in large collections of loops, we evaluated how our model could be used for identifying the structure of electronic music compositions
+(⚠SPOILER ALERT⚠ You’ll want it on your favourite DJ Software!).&lt;/p&gt;
+&lt;h3&gt;Methodology&lt;/h3&gt;
+&lt;br /&gt;
+We aim to classify the instrumentation roles of audio loops automatically. Instead of trying to find relevant characteristics of each class for this classification, we chose to approach the problem from a data-driven methodology, where deep-learning models can learn these relevant characteristics from the data itself.
+&lt;p&gt;The first step to solve this problem is therefore to find good quality data (similar to the data we want to classify). The &lt;a href=&quot;https://zenodo.org/record/3967852&quot;&gt;Freesound Loop Dataset (FSLD)&lt;/a&gt; comprises thousands of loops from &lt;a href=&quot;https://freesound.org/&quot;&gt;freesound.org&lt;/a&gt; with annotations such as their tempo, key, genre and instrumentation roles. It arises as the ideal dataset to use for this task, due to its high-quality professional data, the exact instrumentation role labels we are looking for and the Creative Commons licenses which are ideal for research.&lt;/p&gt;
+&lt;p&gt;One disadvantage of this dataset is the lack of sufficient data with more than one instrumentation role, as half the loops only have one component. To tackle this, we turned on our music maker parts of the brain and decided on an approach: merging single component loops together by matching their tempo and key to create new examples. This enabled us to create a balanced dataset with 25000 loops, where each class is equally represented.&lt;/p&gt;
+&lt;p&gt;The next step is selecting the appropriate deep-learning model for this task. A variety of architectures have been proposed for music classification tasks. We shortlisted the ones that, according to our intuition, would work best for the task, evaluated them and selected the best performing ones. After this, we experimented with slight modifications to the architectures, such as the use of different loss functions and pooling functions and chose the best performing model.&lt;/p&gt;
+&lt;h3&gt;Analysing the Structure of Loop-based Electronic Music&lt;/h3&gt;
+&lt;br /&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/static/998794c026c17a2b4bdc8ff656da6a30/1f854/om-unit.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.21621621621622%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB80lEQVQY0wHoARf+APz7/GltayoZPHg6hnc4g3s5g3s4hIM7hYI7hYI7hYg9ho0+img0cjwoV3s5g4g8iIQ8hoU7hYk8i0EoSQDz9fJnXXBRDlmULn2QK3eSK3ebMHekNHePKHiOKHigL3epMneDJnBuH26cLHmaLHmdLXieLnamL30xDTEA+P36o26RghhYrTdlsDdlsTdlyUJhwz9gwUVkyElkz01j0E1jwEBktztj1lZh2lJf2lJe2FJd5VhjTBgwAP3//saxwa2Hn82btNGWsdOXsuCfu8mVvOWot/e1wPCyve6vueKovNKiu/a7vemvuvK4wvK2we6yvsaerwD////a6ceczMWp372i5Lqe57206bLm8Jqw5bOq6LOt3qar4bDO6Kni6qKv3rLY55jQ55/K6KPY7JiuurwA+/z6iXuMLzVjOWx3M3l1Mnp0PHRxVWFmLnF5JIl6NXF4N1x6TktlWzpXPVBzSE5tRlJuRFhvSF5uPEJwAPv8/6WVf5JkLpSMUZaRVZmJUY+IUXWAVbq4NMfHL7O/NLm/LJGQPlhnW5q2P4y2RZm5O6e7M7O9LpCSQwD////XzdjFssfDwtDCzdbBxNHDxNTIwc/z77T7+K7n7a30/bHQ0ry/vtDg77n6+6/v9a/t9a/6/K/NxMDi/BNuSQkAagAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Joyspark IRAM&quot;
+        title=&quot;Joyspark IRAM&quot;
+        src=&quot;/blog/static/998794c026c17a2b4bdc8ff656da6a30/fcda8/om-unit.png&quot;
+        srcset=&quot;/blog/static/998794c026c17a2b4bdc8ff656da6a30/12f09/om-unit.png 148w,
+/blog/static/998794c026c17a2b4bdc8ff656da6a30/e4a3f/om-unit.png 295w,
+/blog/static/998794c026c17a2b4bdc8ff656da6a30/fcda8/om-unit.png 590w,
+/blog/static/998794c026c17a2b4bdc8ff656da6a30/efc66/om-unit.png 885w,
+/blog/static/998794c026c17a2b4bdc8ff656da6a30/c83ae/om-unit.png 1180w,
+/blog/static/998794c026c17a2b4bdc8ff656da6a30/1f854/om-unit.png 3032w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;!--- &lt;img src=&quot;./om-unit.png&quot; alt=&quot;Joyspark IRAM&quot;/&gt; --&gt;
+&lt;p&gt;The model we developed to classify the instrumentation roles of loops can easily be adapted to classify the loops of an EM composition. Knowing the tempo of a track, we chop it up into 4-bar consecutive segments which are fed to our model. The output is an &lt;em&gt;instrumentation role activation map&lt;/em&gt; (IRAM), which exhibits how likely an instrumentation role is present in each 4 bars of a music piece. Figure 2 presents an IRAM of the EM composition
+&lt;a href=&quot;https://omunit.bandcamp.com/track/joyspark-bandcamp-exclusive&quot;&gt;Joyspark&lt;/a&gt; (2020) by Om Unit using our proposed method for loop-based EM structure analysis.
+For visualisation and comparison, we show a log-scaled STFT power spectrum of the EM composition above the IRAM.&lt;/p&gt;
+&lt;!---
+&lt;script type=&quot;text/javascript&quot; src=&quot;static/class-player.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;spectrogram-player&quot; data-width=&quot;600&quot; data-height=&quot;200&quot; data-freq-min=&quot;0&quot; data-freq-max=&quot;20&quot; data-axis-width=&quot;70&quot;&gt;
+    &lt;img src=&quot;./Eastern-Kingbird-spectrogram.png&quot; /&gt;
+    &lt;audio
+            controls
+            src=&quot;./Eastern-Kingbird.wav&quot;&gt;
+    &lt;/audio&gt;
+&lt;/div&gt;
+ --&gt;
+&lt;p&gt;The IRAM allows us to visualise activations for each role over the duration of the EM composition, where each square is a measurement of four bars.
+Furthermore, we can see how each role develops throughout the EM composition.
+For example, the melody role activations progressively increase between bars 1—41, which corresponds with a synthesizer arpeggio that is gradually introduced by automating the cut-off frequency of a low-pass filter.
+Additionally, the chord role activations increase between bars 1—49 in correlation with the chords in this section that gradually increase in volume.
+Activations for the percussion role also correlate well with the composition as can be seen between bars 49—81 and 97—129---the only sections that contain percussion.
+Finally, the key structural sections of the composition are easily identifiable.
+For example, the introduction to the composition (bars 1—49) begins relatively sparse in the composition and IRAM; whereas, bars 49—81 and 97—129 are quite clearly the &lt;em&gt;core&lt;/em&gt; of the piece---that is, the most energetic sections of the composition typically established by the &lt;em&gt;drop&lt;/em&gt;.&lt;/p&gt;
+&lt;h3&gt;Dataset&lt;/h3&gt;
+&lt;p&gt;In order to evaluate how well our system can analyze the structure of professionally produced EM, we compiled a dataset of 10 compositions. The dataset covers several popular EM genres such as hip-hop, drum and bass, techno, house and garage (with a tempo range of 120-175 BPM). The tracks were collected from Soundcloud and Bandcamp and are available under a Creative Commons license. Ground truth annotations were obtained by listening through each composition and labelling the active instrumentation roles at 4-bar intervals. The activations for each track can be downloaded via the corresponsing link and the roles are order as follows: Bass (0), Drums (1), FX (2), Melody (3). &lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Title&lt;/th&gt;
+&lt;th&gt;Artist&lt;/th&gt;
+&lt;th&gt;Genre&lt;/th&gt;
+&lt;th&gt;BPM&lt;/th&gt;
+&lt;th&gt;Source&lt;/th&gt;
+&lt;th&gt;Duration&lt;/th&gt;
+&lt;th&gt;Annotations&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Come On Let’s Go&lt;/td&gt;
+&lt;td&gt;Le Gang&lt;/td&gt;
+&lt;td&gt;Hip Hop&lt;/td&gt;
+&lt;td&gt;154&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://soundcloud.com/thisislegang/come-on-lets-go&quot;&gt;Soundcloud&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;02:26&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;/blog/eeae37ef014ed1feeb5f2923fb0f6683/0_role_activations.npy&quot;&gt;Download&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Rap Instrumental (Eminem Type Beat)&lt;/td&gt;
+&lt;td&gt;Rick Da Sauce&lt;/td&gt;
+&lt;td&gt;Hip Hop&lt;/td&gt;
+&lt;td&gt;172&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://soundcloud.com/rickdasauce/rap-instrumental-eminem-type&quot;&gt;Soundcloud&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;03:10&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;/blog/5825769c9932e4cd5dc74957af5b1fec/1_role_activations.npy&quot;&gt;Download&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Fear Bomb&lt;/td&gt;
+&lt;td&gt;Skorpion&lt;/td&gt;
+&lt;td&gt;DnB&lt;/td&gt;
+&lt;td&gt;170&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://soundcloud.com/n-e-u-r-o-d-n-b/skorpion-fear-bomb-neurodnb&quot;&gt;Soundcloud&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;03:51&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;/blog/eda668d8b6837c7ed669aa23e7e2a80e/2_role_activations.npy&quot;&gt;Download&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;The Way It Is&lt;/td&gt;
+&lt;td&gt;Sonido Berzerk&lt;/td&gt;
+&lt;td&gt;Garage&lt;/td&gt;
+&lt;td&gt;140&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://sonidoberzerk1.bandcamp.com/track/the-way-it-is&quot;&gt;Bandcamp&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;04:13&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;/blog/2639a36dff3214df1442a7fbd1126515/3_role_activations.npy&quot;&gt;Download&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;I Don’t Need U 2 Say Anything&lt;/td&gt;
+&lt;td&gt;Le Gang&lt;/td&gt;
+&lt;td&gt;Hip Hop&lt;/td&gt;
+&lt;td&gt;136&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://soundcloud.com/thisislegang/i-dont-need-u-2-say-anything&quot;&gt;Soundcloud&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;02:23&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;/blog/dcb800a22127b42ca083a7f1ccb311bd/4_role_activations.npy&quot;&gt;Download&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Robinson Jr.&lt;/td&gt;
+&lt;td&gt;Stoertebeker&lt;/td&gt;
+&lt;td&gt;House&lt;/td&gt;
+&lt;td&gt;126&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://digitaldiamonds.bandcamp.com/track/robinson-jr&quot;&gt;Bandcamp&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;06:13&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;/blog/ee2851a5ba7230f141c4f3f9756d7ab3/5_role_activations.npy&quot;&gt;Download&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Neuroluminescence&lt;/td&gt;
+&lt;td&gt;Medular&lt;/td&gt;
+&lt;td&gt;Psytrance&lt;/td&gt;
+&lt;td&gt;128&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://digitaldiamonds.bandcamp.com/track/neuroluminescence&quot;&gt;Bandcamp&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;09:25&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;/blog/8efe306485171b7ea35c00599dc930e4/6_role_activations.npy&quot;&gt;Download&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Slow It Down&lt;/td&gt;
+&lt;td&gt;Aztek, Prinsh&lt;/td&gt;
+&lt;td&gt;House (EDM)&lt;/td&gt;
+&lt;td&gt;124&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://soundcloud.com/djprinsh/aztek-prinsh-slow-it-down-original-mix-so-track-boa&quot;&gt;Soundcloud&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;05:48&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;/blog/6b073f9afae9e42814319247b88331dc/7_role_activations.npy&quot;&gt;Download&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;East&lt;/td&gt;
+&lt;td&gt;Chump Change&lt;/td&gt;
+&lt;td&gt;Jungle&lt;/td&gt;
+&lt;td&gt;160&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://yarnaudio.bandcamp.com/track/east-feat-deserved&quot;&gt;Bandcamp&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;04:04&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;/blog/919932f81828e8744042afc8cc020c2b/8_role_activations.npy&quot;&gt;Download&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Minotauro&lt;/td&gt;
+&lt;td&gt;Langax&lt;/td&gt;
+&lt;td&gt;Acid&lt;/td&gt;
+&lt;td&gt;119&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://soisloscerdos.bandcamp.com/track/minotauro&quot;&gt;Bandcamp&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;04:42&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;/blog/d973b88a86b1a7b761a69bbb7cff55ec/9_role_activations.npy&quot;&gt;Download&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</content:encoded></item><item><title><![CDATA[Style-based Drum Synthesis with GAN Inversion]]></title><description><![CDATA[Drysdale, J. and Tomczak, M. and J. Hockman. 2021. Style-based Drum Synthesis with GAN Inversion. In Extended Abstracts for the Late…]]></description><link>https://jake-drysdale.github.io/blog/stylegan-drumsynth/</link><guid isPermaLink="false">https://jake-drysdale.github.io/blog/stylegan-drumsynth/</guid><pubDate>Sun, 10 Oct 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Drysdale, J. and Tomczak, M. and J. Hockman. 2021. Style-based Drum Synthesis with GAN Inversion. In &lt;em&gt;Extended Abstracts for the Late-Breaking Demo Sessions of the 22nd International Society for Music Information Retrieval Conference&lt;/em&gt;, Online.
+[&lt;a href=&quot;https://archives.ismir.net/ismir2021/latebreaking/000041.pdf&quot;&gt;paper&lt;/a&gt;,
+&lt;a href=&quot;/blog/190d8b84b7daadb18d800922bfe5b7b6/lbd_posterv2.pdf&quot;&gt;poster&lt;/a&gt;]&lt;/p&gt;
+&lt;p&gt;This blog post contains the supplementary material accompanying the late-breaking demo:  “Style-based Drum Synthesis with GAN Inversion” for the International Society for Music Information Retrieval (ISMIR).&lt;/p&gt;
+&lt;center&gt;&lt;h3&gt;Abstract&lt;/h3&gt;&lt;/center&gt;
+&lt;p&gt;Neural audio synthesizers exploit deep learning as an alternative to traditional synthesizers that generate audio from hand-designed components such as oscillators and wavetables. For a neural audio synthesizer to be applicable to music creation, meaningful control over the output is essential. This paper provides an overview of an unsupervised approach to deriving useful feature controls learned by a generative model. A system for generation and transformation of drum samples using a style-based generative adversarial network (GAN) is proposed. The system provides functional control of style features of drum sounds based on principal component analysis (PCA) applied to the latent space. Additionally, we propose the use of an encoder trained to invert input drum sounds back to the latent space of the pre-trained GAN. We experiment with three modes of control and provide audio results on a supporting website. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/static/abf3683db81c45dafcbf0b363d7453ba/87670/training_fig.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAACXBIWXMAAB7CAAAewgFu0HU+AAABsklEQVQoz1VSbW6cMBDlZrlKf/QQOUKk3iD92fQAlSKt0v7baD+iqI2ybJeksDbLgvjGYIwNBkMHqKJmkEYz4zfPnnlo/WRDr+AbJoOUc16WpRBiPPrPVKvAu56n67plWRokenHYZpuxbVBgSZIQQrIsgwC84ziQwmmRkfBJLyzE4/SIELBrzKcfLq8vPl6ZjwgQUso4jn3fPx6Pc2Ca5twcef5ps/35YxE+PcdhBNdooZPcfVnfXN16KBgfphRjjFJaVVVJaSslFGGKileB6zmrDV6t0hez6zqoa1NDVzd8eG+ybblqm34EAVcjm7aRhet3vO47NWPGZlpQeAb2/YfD4Te2hahZLZ5psEzwjkVpGEVxPN5fcdvEZ+ykYVzX9b9mmLOi9HZ5/+n689fF4mSfLPf07c+v749rg0ar5f1utwOYd3Zf98Z2vTX3LxhhEEKbtQEfELLHth0EDdDKxhTZhpxfBalZRfIcAK1sPeREbsDyErYwLuxtyDdJq8kG1XPZFIyBYGmawubzPK8F0DaAgxh29q55+lt6qIKGJYPBBUhlGAZCCGMM4s28cDiyD8NfbEcsLICSkd0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;training_procedure&quot;
+        title=&quot;training_procedure&quot;
+        src=&quot;/blog/static/abf3683db81c45dafcbf0b363d7453ba/fcda8/training_fig.png&quot;
+        srcset=&quot;/blog/static/abf3683db81c45dafcbf0b363d7453ba/12f09/training_fig.png 148w,
+/blog/static/abf3683db81c45dafcbf0b363d7453ba/e4a3f/training_fig.png 295w,
+/blog/static/abf3683db81c45dafcbf0b363d7453ba/fcda8/training_fig.png 590w,
+/blog/static/abf3683db81c45dafcbf0b363d7453ba/efc66/training_fig.png 885w,
+/blog/static/abf3683db81c45dafcbf0b363d7453ba/c83ae/training_fig.png 1180w,
+/blog/static/abf3683db81c45dafcbf0b363d7453ba/87670/training_fig.png 4552w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;center&gt;&lt;h3&gt;Code&lt;/h3&gt;&lt;/center&gt;
+&lt;p&gt;The GitHub repository for this project is available &lt;strong&gt;&lt;a href=&quot;https://github.com/SoMA-group/stylegan-drumsynth&quot;&gt;here&lt;/a&gt;&lt;/strong&gt;. The repo contains instructions for installation and usage for a TensorFlow implementation of the style-based drum synthesiser and audio inversion network. &lt;/p&gt;
+&lt;center&gt;&lt;h3&gt;Audio Examples&lt;/h3&gt;&lt;/center&gt;
+&lt;h1&gt;&lt;center&gt;&lt;/h1&gt;
+&lt;h4&gt;Training Data Vs Generations&lt;/h4&gt;
+&lt;p&gt;An comparison between: (left) a random selection of some examples from the dataset used in training and, (right) a random selection of drum sound generations.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Kick drums&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/fada2b5eafe741e2e39a8f5420e89f9c/kicks_real.wav&quot;&gt;
+	&lt;/audio&gt;
+    &lt;audio controls
+		src=&quot;/blog/134744d9bbd155c716d2c7d4b1aa3b44/kick_generations_demo.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Snare drums&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/0b096000a710b035bc647ed618715b3d/snares_real.wav&quot;&gt;
+	&lt;/audio&gt;
+    &lt;audio controls
+		src=&quot;/blog/62349e55fe1324949eddbe22481dace2/snare_generations_demo.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Cymbals&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/4d9e5fb1fe120be9880d72bbcf354e17/hats_real.wav&quot;&gt;
+	&lt;/audio&gt;
+    &lt;audio controls
+		src=&quot;/blog/6d1efdde12e893371901ae12cbfe8094/hat_generations_demo.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;h4&gt;Audio Inversion Network&lt;/h4&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/static/1318d804d685bf064e8dd7267168d884/73caa/inversion_network.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 22.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAIAAAABPYjBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA6klEQVQI1yWN3U6DMACFeQrexr0X4do9hddeTCWYmCXcLBIIQevM3DqxBZpS3A9sOnEkS5fSrtnOxbn6zncMIYSUUil1aTJPsymqy/VmWR35cQxeD1JM2gocKneL42ahGSE7dY4Rx7FlWYwxPW7bFs++siQNRj5N8gzhz/cAVPRhCd1xCH7Kl933rt5c9/tRFHVdZ3ieZ5qm4zjaRCkFQTx9m9wP7mq28kf+k/s4hGDI4M3g9rlE/jpPZvCq17Ntm3Nu6E9CiF5qk+4CkTIvCkxyiP+bZv4RLvje3aLwl4V/JdivlFQ4TS/wCd2ayrX+Ej/XAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;inversion_network&quot;
+        title=&quot;inversion_network&quot;
+        src=&quot;/blog/static/1318d804d685bf064e8dd7267168d884/fcda8/inversion_network.png&quot;
+        srcset=&quot;/blog/static/1318d804d685bf064e8dd7267168d884/12f09/inversion_network.png 148w,
+/blog/static/1318d804d685bf064e8dd7267168d884/e4a3f/inversion_network.png 295w,
+/blog/static/1318d804d685bf064e8dd7267168d884/fcda8/inversion_network.png 590w,
+/blog/static/1318d804d685bf064e8dd7267168d884/efc66/inversion_network.png 885w,
+/blog/static/1318d804d685bf064e8dd7267168d884/73caa/inversion_network.png 1110w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;An A-B comparsion of encoding audio input (A) with the audio inversion network and drum sound generations (B) with the inverted latent code. (Left) the audio input and, (right) the corresponding generation.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Kick drums&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/1f584bca2789efb16d4b6069f86a638a/kick_encoder_A.wav&quot;&gt;
+	&lt;/audio&gt;
+    &lt;audio controls
+		src=&quot;/blog/e16830fdfb409d71271fd0e742e0cf09/kick_encoder_B.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Snare drums&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/095fa01b404ad8fcbe1d13dc7afd954b/snare_encoder_A.wav&quot;&gt;
+	&lt;/audio&gt;
+    &lt;audio controls
+		src=&quot;/blog/240421640c1e8218318d5d678ed88513/snare_encoder_B.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Cymbals&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/e3061cd9f51427b56d0152a4dbbe8e69/hat_encoder_A.wav&quot;&gt;
+	&lt;/audio&gt;
+    &lt;audio controls
+		src=&quot;/blog/6b8a4d076148e202c732310df559109a/hat_encoder_B.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;p&gt;Additionally, the examples below demonstrate the systems capacity to generate drum sounds from alternative audio inputs such as beatboxing and sliced breakbeats. &lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Beatbox to drum sound&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/1298da851692ede95864b6ff5567b04e/beatbox_to_gan.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Hip-hop breakbeat to drum sound&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/91a36207532e028d16a3cb72d4cb758e/hiphop_to_gan.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Amen break to drum sound&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/61f1aebafa04046939568da50511386b/amen_to_gan.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;h4&gt;Usage demonstration&lt;/h4&gt;
+&lt;p&gt;Example usage within loop-based electronic music compositions.
+The percussive elements of the following tracks were created using a selection
+of samples from the generated data. A light amount of post-processing (equalisation and volume envelope shaping)
+was applied to mix the sounds.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Track 1: Hip hop demo&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/7da59eabcb45b5231b0d5426173c21fa/hiphopdemo.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Track 2: Drum and bass demo&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/94ea879a4cd8db0512786e42af715ab8/drumandbassdemo.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Track 3: Breakbeat interpolation demo&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/e82a80f63dd47c169072c508e4d03e0b/break-morphing.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;!---
+##### Interpolating between two arbitrary drum sounds
+
+Below are some examples of the systems capacity reconstruct two arbitrary and performing interpolation between them. (Left) source A, (right) source 2, and (below) interpolation between A and B. (under construction)
+
+
+&lt;figure&gt;
+    &lt;figcaption&gt;Kick-to-kick interpolation&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;&quot;&gt;
+	&lt;/audio&gt;
+    &lt;audio controls
+		src=&quot;&quot;&gt;
+	&lt;/audio&gt;
+    &lt;audio controls
+		src=&quot;&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+    &lt;figcaption&gt;Snare-to-snare interpolation&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;&quot;&gt;
+	&lt;/audio&gt;
+    &lt;audio controls
+		src=&quot;&quot;&gt;
+	&lt;/audio&gt;
+    &lt;audio controls
+		src=&quot;&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+    &lt;figcaption&gt;hat-to-hat interpolation&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;&quot;&gt;
+	&lt;/audio&gt;
+    &lt;audio controls
+		src=&quot;&quot;&gt;
+	&lt;/audio&gt;
+    &lt;audio controls
+		src=&quot;&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+---&gt;
+&lt;p&gt;Some more examples can be found here: &lt;a href=&quot;https://soundcloud.com/beatsbygan&quot;&gt;https://soundcloud.com/beatsbygan&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Interpolation demonstration&lt;/h4&gt;
+&lt;p&gt;The proposed system learns to map points in the latent space to the generated waveforms. The structure of the latent space can be explored by interpolating between points in the space.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/static/3c383a54fa5d20894d2085706ef0173e/0f903/z_spacev2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 55.4054054054054%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAB7CAAAewgFu0HU+AAAB4UlEQVQoz21SaY+bMBDl//+Yfq/SSjnYCFRyAOE2YHMYc4czBwnb2Y26/dCO7JH97Dd6fh5unuf3z2i7rqyq6X6fn/P7H/DfeN1/ZQ7mNE1FniuGIciy7pNj6AaMlnnR9T0cjeOoaRoOgrdfUlUUHqWHk/Z8TJhSrm3bJElCQpI4JhiQxIyJ43nIcBxxV2RZ13WLxcK0rCXPm4ZR970oSeMwlOczF4ZhlqbffvyUDPOEEKFRnqYsZVlVBj6u6xrIq9VKVtSNIDJK47xUDfMyjnGWcyxJYOxV9WjZvKZ+j3RZkpGi+/KJMlaWJZD5zUazTF7eZTRJh8bC7nS7s6bmIkoN2w4ICT3PMU0HIdf17KOCBClJWVVVwzAAeScflzuxYGnY16qPnvcJNwVHouhtfxBldalBPpgn3bQtG0pgDC8siqLv+/V6jRy0FyWa0Irljm4N41jQ9EM2mOl7noIscMU46cqS92wQYWKMwe2+6wRBsE1L2R+iOO6bFmReb9cGDMuyLAhBsufaDvaxgxzs+chxAL/dbvCRoHy73Q5Nu1/xLsFnEktrvum7wgs+/vn5fF4uFzCGMdCR+L4PagF8dQXguq5fr1cSBFEUAQ5bqAgIN3/GVwM9Hg9Av5j/a7G/y98LhFNGHB53gwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;z_space_fig&quot;
+        title=&quot;z_space_fig&quot;
+        src=&quot;/blog/static/3c383a54fa5d20894d2085706ef0173e/fcda8/z_spacev2.png&quot;
+        srcset=&quot;/blog/static/3c383a54fa5d20894d2085706ef0173e/12f09/z_spacev2.png 148w,
+/blog/static/3c383a54fa5d20894d2085706ef0173e/e4a3f/z_spacev2.png 295w,
+/blog/static/3c383a54fa5d20894d2085706ef0173e/fcda8/z_spacev2.png 590w,
+/blog/static/3c383a54fa5d20894d2085706ef0173e/efc66/z_spacev2.png 885w,
+/blog/static/3c383a54fa5d20894d2085706ef0173e/c83ae/z_spacev2.png 1180w,
+/blog/static/3c383a54fa5d20894d2085706ef0173e/0f903/z_spacev2.png 1719w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Figure 2: Interpolation in the latent space for kick drum generation. Kick drums are generated for each point along linear
+pathsthrough the latent space (left). Paths are colour coded and subsequent generated audio appears across rows (right).&lt;/p&gt;
+&lt;h5&gt;A to B interpolation&lt;/h5&gt;
+&lt;p&gt;In the following examples, two generated drum samples are selected and their latent vectors are noted. A linear path of 30 steps between each latent vector is created and a waveform is generated for each of those 30 steps.&lt;/p&gt;
+&lt;p&gt;Interpolating between Snare A and Snare B.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Snare A&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/a530c5adc630412cbafb582a4cc37a56/snare_a.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Snare B&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/436abd619027e297afffb21117d89034/snare_b.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Linear interpolation&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/faf86ce4aa364ad5424af46d953ca334/demo1_interpolate.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;p&gt;Interpolating between Kick A and Kick B.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Kick A&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/dfe0b4a25ea3859eddc8f668916957e3/kick_a.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Kick B&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/742442e55da50c7beabcd1fdfc0c7734/kick_b.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Linear interpolation&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/a84f8ea9acfa079a2770691a2c29f4d2/demo2_interpolate.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;p&gt;Interpolating between Cymbal A and Cymbal B.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Cymbal A&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/09841e4a0aec0a946f1486c0360ab0f0/cymbal_a.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Cymbal B&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/1fbc99f06215f2f1496022fd8a81cdc5/cymbal_b.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Linear interpolation&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/6ab3a48087e0a5f184d4acbb2cd752c0/demo3_interpolate.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;&lt;strong&gt;[1]&lt;/strong&gt;&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;&lt;strong&gt;&lt;a href=&quot;https://archives.ismir.net/ismir2021/latebreaking/000041.pdf&quot;&gt;Drysdale, J. and Tomczak, M. and J. Hockman. 2021. Style-based Drum Synthesis with GAN Inversion. In &lt;em&gt;Extended Abstracts for the Late-Breaking Demo Sessions of the 22nd International Society for Music Information Retrieval Conference&lt;/em&gt;, Online.&lt;/a&gt;&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;@inproceedings{drysdale2021sds,
+  title={Style-based Drum Synthesis with GAN Inversion},
+  author={Drysdale, Jake and Tomczak, Maciej and Hockman, Jason},
+  booktitle = {Extended Abstracts for the Late-Breaking Demo Sessions of the 22nd
+  International Society for Music Information Retrieval (ISMIR) Conference.},
+  year={2021}
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Breakbeat Manipulation with GANs]]></title><description><![CDATA[Breakbeats are percussion-only passages that are primarily sourced from samples of Funk and Jazz recordings from 1960s to 1980s. Electronic…]]></description><link>https://jake-drysdale.github.io/blog/breakbeat-manipulation/</link><guid isPermaLink="false">https://jake-drysdale.github.io/blog/breakbeat-manipulation/</guid><pubDate>Sun, 20 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Breakbeats are percussion-only passages that are primarily sourced from samples of Funk and Jazz recordings from 1960s to 1980s. Electronic music producers often repurpose breakbeat samples by segmentation, resequencing and further manipulation using audio effects. A system for manipulating breakbeats using a generative adversarial network (GAN) is presented. A dataset of some popular breakbeats was collected and then augmented through time-stretching, pitch modification, and distortion to increase the number of training examples. &lt;/p&gt;
+&lt;p&gt;The figure above presents an overview of the method for breakbeat manipulation. The system learns the underlying probability distribution of a dataset compiled of segmented breakbeats. Information about the system architecture can be found &lt;a href=&quot;https://dafx2020.mdw.ac.at/proceedings/papers/DAFx2020_paper_45.pdf&quot;&gt;here&lt;/a&gt; [1]. Synthesis is controlled by an input latent vector and condition that enables continuous exploration and interpolation of generated waveforms. &lt;/p&gt;
+&lt;p&gt;20 popular breakbeats (e.g., &lt;em&gt;Amen&lt;/em&gt;, &lt;em&gt;Funky Drummer&lt;/em&gt;, &lt;em&gt;Think&lt;/em&gt;, &lt;em&gt;Apache&lt;/em&gt;) were selected as training data, reduced to the length of 1-bar and quantised using a 16th-note resolution. The quantised breakbeats were then sliced into 16th-note note segments and labelled based on their position, resulting in 16 conditions and an 20 examples per condition. Labels are used to condition the system on an integer value that can be used to generate audio at the desired 16th-note location. To increase the size of the dataset, the individual breakbeat segments were augmented using techniques commonly used by music producers---that are pitch shifting, re-sampling and distortion. Each breakbeat is pitch-shifted to a tempo of 161.5 beats per minute and sampled at 44.1kHz, as each 16th-note segment conveniently has 4096 samples which is the nearest power of 4 to satisfy the symmetric structure of the generator and discriminator networks. &lt;/p&gt;
+&lt;p&gt;The model is trained using the WGAN-GP training strategy to minimise the Wasserstein distance between the training data distribution and generated data distribution for approximately 80,000 iterations with a minibatch size of 64 (~ 1 day) on NVIDA 2080ti GPU.&lt;/p&gt;
+&lt;center&gt;&lt;h3&gt;Audio Examples&lt;/h3&gt;&lt;/center&gt;
+&lt;h1&gt;&lt;center&gt;&lt;/h1&gt;
+&lt;h4&gt;Training Data&lt;/h4&gt;
+&lt;p&gt;A selection of breakbeats from the dataset used in training.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;&quot;The Worm&quot; breakbeat&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/1f85f6129cef6b17ba3f88f581c30d87/worm.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;&quot;Cold Sweat&quot; breakbeat&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/452c82ebddd94eb240042492a199f684/coldsweat.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;&quot;Think&quot; breakbeat&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/0b1a21136a46e76fef9b5b635eff6eeb/think.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;&quot;Humpty Dumpty&quot; breakbeat&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/4a6eb2cf5e4e1a339ff6857dbe2ba42b/humptydumpty.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;h4&gt;Generations&lt;/h4&gt;
+&lt;p&gt;A selection of breakbeats generated by the system.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Generated breakbeat 1&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/21d9994bfe16888aa0b1f3ad001cf11b/g-break1.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Generated breakbeat 2&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/e6fcf25fe4d776ee67211fe8accc705c/g-break2.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Generated breakbeat 3&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/08cfc6bb27d55e234053f9e88b703d4e/g-break3.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Generated breakbeat 4&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/05566cb88ac2e7995f8a8b0a23cdee31/g-break4.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;h4&gt;Breakbeat morphing&lt;/h4&gt;
+&lt;p&gt;A demonstration of the systems ability to morph between generated breakbeats by interpolating the latent space.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Breakbeat morphing demonstration&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/864cf0e25c39996778b9722c4e61025a/break-morphing1.wav&quot;&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;/audio&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Breakbeat morphing in a composition&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/e82a80f63dd47c169072c508e4d03e0b/break-morphing2.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Interpolation 1&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/4b1f2b793f754bba3810543dbbe3ef3e/interp1.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Interpolation 2&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/0619661d85dceb6857124372dc525805/interp2.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Interpolation 3&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/d0370cce3a6c92975710aa0e42e3edbf/interp3.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Interpolation 4&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/640bc2b73478b06eb207c3df28f62e21/interp4.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;&lt;strong&gt;[1]&lt;/strong&gt;&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;&lt;strong&gt;&lt;a href=&quot;https://dafx2020.mdw.ac.at/proceedings/papers/DAFx2020_paper_45.pdf&quot;&gt;Drysdale, J., M. Tomczak, J. Hockman, Adversarial Synthesis of Drum Sounds. Proceedings of the 23rd International Conference on Digital Audio Effects (DAFX), 2020.&lt;/a&gt;&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;@inproceedings{drysdale2020ads,
+  title={Adversarial synthesis of drum sounds},
+  author={Drysdale, Jake and Tomczak, Maciej and Hockman, Jason},
+  booktitle = {Proceedings of the International Conference on Digital Audio Effects 
+  (DAFx)},
+  year={2020}
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Help&lt;/h2&gt;
+&lt;p&gt;Any questions please feel free to contact me on jake.drysdale@bcu.ac.uk&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Adversarial Synthesis of Drum Sounds]]></title><description><![CDATA[Drysdale, J. and Tomczak, M. and J. Hockman. 2020. Adversarial synthesis of drum sounds. In Proceedings of the 23nd International Conference…]]></description><link>https://jake-drysdale.github.io/blog/adversarial-drum-synthesis/</link><guid isPermaLink="false">https://jake-drysdale.github.io/blog/adversarial-drum-synthesis/</guid><pubDate>Sun, 26 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Drysdale, J. and Tomczak, M. and J. Hockman. 2020. Adversarial synthesis of drum sounds. In Proceedings of the 23nd International Conference on Digital Audio Effects, Vienna, Austria.&lt;/p&gt;
+&lt;p&gt;[&lt;a href=&quot;https://dafx2020.mdw.ac.at/proceedings/papers/DAFx2020_paper_45.pdf&quot;&gt;pdf&lt;/a&gt;,
+&lt;a href=&quot;https://dafx2020.mdw.ac.at/proceedings/presentations/paper_45.mp4&quot;&gt;presentation&lt;/a&gt;]&lt;/p&gt;
+&lt;p&gt;Recent advancements in generative audio synthesis have allowed for the development of creative tools for generation and manipulation of audio.
+In this project, a strategy is proposed for the synthesis of drum sounds using generative adversarial networks (GANs).
+The system is based on a conditional Wasserstein GAN, which learns the underlying probability distribution of a dataset compiled of labeled drum sounds.
+Labels are used to condition the system on an integer value that can be used to generate audio with the desired characteristics.
+Synthesis is controlled by an input latent vector that enables continuous exploration and interpolation of generated waveforms.&lt;/p&gt;
+&lt;center&gt;&lt;h3&gt;Audio Examples&lt;/h3&gt;&lt;/center&gt;
+&lt;p&gt;Results accompanying the paper “Adversarial Synthesis of Drum sounds” for the International Conference on Digital Audio Effects 2020.&lt;/p&gt;
+&lt;h1&gt;&lt;center&gt;&lt;/h1&gt;
+&lt;h4&gt;Training Data&lt;/h4&gt;
+&lt;p&gt;A random selection of 30 examples from the dataset used in training.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Kick drums&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/05edad88151533603b2e2865b127a154/realkicks.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Snare drums&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/fb3448edbddb484fe4b80b6ff71b72ba/realsnares.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Cymbals&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/e9c7ad2dc9ff9de6ef401966f57c0856/realcymbals.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;h4&gt;Generations&lt;/h4&gt;
+&lt;p&gt;A random selection of 30 examples from the generated data.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Kick drums&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/43eb2ebfb4e9c6466622a6506cadd1ae/genkicks.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Snare drums&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/8dac81c07daab7aa8b7c5845fb4227e8/gensnares.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Cymbals&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/5b93f5a5d414072d2e38bc9c706f9247/gencymbals.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;h4&gt;Usage demonstration&lt;/h4&gt;
+&lt;p&gt;Example usage within loop-based electronic music compositions.
+The percussive elements of the following tracks were created using a selection
+of samples from the generated data. A light amount of post-processing (equalisation and volume envelope shaping)
+was applied to mix the sounds.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Track 1: Hip hop demo&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/7da59eabcb45b5231b0d5426173c21fa/hiphopdemo.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Track 2: Drum and bass demo&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/94ea879a4cd8db0512786e42af715ab8/drumandbassdemo.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;h5&gt;Generating Drum Loops&lt;/h5&gt;
+&lt;p&gt;Below are some examples of the systems capacity to generate 1 bar loops. A dataset of 130bpm, 1 bar drum loops was complied and then sliced into 16th note segments. The system is conditioned on each of these segments (giving a total of 16 classes) and then trained for a number of iterations. A loop can be created by generating a waveform for each of the 16 classes and then concatentating them together. &lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/blog/static/7ce76149a500650673556cbd320a7957/9937c/generation-conditions.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 18.91891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAIAAAABPYjBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAApElEQVQI1z2Oyw6FIBBD+f/PMPFnTGTHBh8IviOKGGNY3hNN7iwmbWk7iGmauq4bhsFaK6Vs23ZdV601ojGm7/u6rquqAqAURfH34xExRkzzPD/Pk2WZUiqlxEYkRsY5V5blsixN0+R5fl0XZ8Zx5FXs++69P88TTgUYhePHcYBDCJyCgrdtw+PfQadX3PdNMrxDKw4oG8qnvi7O0vsVkYdSB/gBs8fWNvmgMlcAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;drawing&quot; title=&quot;drawing&quot; src=&quot;/blog/static/7ce76149a500650673556cbd320a7957/fcda8/generation-conditions.png&quot; srcset=&quot;/blog/static/7ce76149a500650673556cbd320a7957/12f09/generation-conditions.png 148w,
+/blog/static/7ce76149a500650673556cbd320a7957/e4a3f/generation-conditions.png 295w,
+/blog/static/7ce76149a500650673556cbd320a7957/fcda8/generation-conditions.png 590w,
+/blog/static/7ce76149a500650673556cbd320a7957/efc66/generation-conditions.png 885w,
+/blog/static/7ce76149a500650673556cbd320a7957/9937c/generation-conditions.png 1156w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot; style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot; loading=&quot;lazy&quot;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Training loop example 1&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/78e0959df1fb5f3cea0f752083e7ebc3/train11.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Training loop example 2&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/b46f9403a396ad96ae8dc9ef7d23b2d7/train12.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Generated loop example 1&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/f4d2f55e105fd1da11b84533c119de52/gen11.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Generated loop example 2&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/ad9aa27b24b6abc6281736071b53e6ab/gen12.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Interpolating between two different loops&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/8137e551cf407c6e65ed66c5b9a63b74/slerp1.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;p&gt;Some more examples can be found here: &lt;a href=&quot;https://soundcloud.com/beatsbygan&quot;&gt;https://soundcloud.com/beatsbygan&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Interpolation demonstration&lt;/h4&gt;
+&lt;p&gt;The proposed system learns to map points in the latent space to the generated waveforms. The structure of the latent space can be explored by interpolating between points in the space. For the following experiments, the GAN was trained with a latent space dimensionality of size 3.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/static/abcdf884a02358c27af3c85260b3b2db/4f20b/z_space_fig.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 55.4054054054054%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAA9hAAAPYQGoP6dpAAAB00lEQVQoz2VS2W7bMBDU/39R81CkdmI3LhLHpi7qog5euixZkm2JlOKUtlAgSOeBIJY7u9zZ0T7/oeu6Q1UNUk7Th8Lnf7her19PBU3dpJRlUdgQmgAcHI9xWOS8yo9d28g7DMMIw/Btu03TtKrrPQDTNGFCtKZpVCiO4whjQmmKGecBS0gCMx6aGafDIH48PEDTfFuvdwAMXbfdbI5t2x5KjRCiyOuXF7TbU+Sz7FaCZ2la5IzgSg0yDD8fH13dMBdPOEun8oD3eieETIjG77BdN9YN7Blpsfe3jIYJjxxMWH0nLxZL17NMe0NpJseWMP98HnpRaYyxKAyTENmuD10vQIEHEYmiO5k2x6MiL5dPALzv9ms1lpAVJvbpJAZBtARj/X2LNq+2s3Js3QKqAjQtyw+QZVl1Xd86LxeBExkbH7P4VIyRxc+iO2J562zbSmknwR40oA+wb/xBnut5PkJISa3Iz6tVhJC1A5iSaZA8IZf+IrpeK8tSJSm1HccNFMLAcx0VoZQKIeb9/1osT03l7H6b0JVtYbw+F1UjKqzNG+/7Xu0sz/M4TpT+6jKO4+yNy+Wi67ocR8p4FIUqov55S5BS++ahudDssNlMX5++OewvsNtXK+r0/fMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;z_space_fig&quot;
+        title=&quot;z_space_fig&quot;
+        src=&quot;/blog/static/abcdf884a02358c27af3c85260b3b2db/fcda8/z_space_fig.png&quot;
+        srcset=&quot;/blog/static/abcdf884a02358c27af3c85260b3b2db/12f09/z_space_fig.png 148w,
+/blog/static/abcdf884a02358c27af3c85260b3b2db/e4a3f/z_space_fig.png 295w,
+/blog/static/abcdf884a02358c27af3c85260b3b2db/fcda8/z_space_fig.png 590w,
+/blog/static/abcdf884a02358c27af3c85260b3b2db/efc66/z_space_fig.png 885w,
+/blog/static/abcdf884a02358c27af3c85260b3b2db/c83ae/z_space_fig.png 1180w,
+/blog/static/abcdf884a02358c27af3c85260b3b2db/4f20b/z_space_fig.png 8097w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Figure 2: Interpolation in the latent space for kick drum generation. Kick drums are generated for each point along linear
+pathsthrough the latent space (left). Paths are colour coded and subsequent generated audio appears across rows (right).&lt;/p&gt;
+&lt;h5&gt;A to B interpolation&lt;/h5&gt;
+&lt;p&gt;In the following examples, two generated drum samples are selected and their latent vectors are noted. A linear path of 30 steps between each latent vector is created and a waveform is generated for each of those 30 steps.&lt;/p&gt;
+&lt;p&gt;Interpolating between Snare A and Snare B.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Snare A&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/a530c5adc630412cbafb582a4cc37a56/snare_a.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Snare B&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/436abd619027e297afffb21117d89034/snare_b.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Linear interpolation&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/faf86ce4aa364ad5424af46d953ca334/demo1_interpolate.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;p&gt;Interpolating between Kick A and Kick B.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Kick A&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/dfe0b4a25ea3859eddc8f668916957e3/kick_a.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Kick B&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/742442e55da50c7beabcd1fdfc0c7734/kick_b.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Linear interpolation&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/a84f8ea9acfa079a2770691a2c29f4d2/demo2_interpolate.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;p&gt;Interpolating between Cymbal A and Cymbal B.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Cymbal A&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/09841e4a0aec0a946f1486c0360ab0f0/cymbal_a.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Cymbal B&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/1fbc99f06215f2f1496022fd8a81cdc5/cymbal_b.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Linear interpolation&lt;/figcaption&gt;
+    &lt;audio controls
+		src=&quot;/blog/6ab3a48087e0a5f184d4acbb2cd752c0/demo3_interpolate.wav&quot;&gt;
+	&lt;/audio&gt;
+&lt;/figure&gt;
+&lt;h6&gt;Linear interpolation&lt;/h6&gt;
+&lt;p&gt;More examples of linear interpolation between two random points.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Kick drums &lt;/figcaption&gt;
+    
+    &lt;audio controls
+		src=&quot;/blog/91e38211312e8f1e33148df293864b50/kick_1.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/40f30076dbbf42b945c41bf4d105c9b1/kick_2.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/7253d959070caea814ef7a240578375f/kick_3.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/5d1d324756302d150585ae08cdab10eb/kick_4.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Snare drums &lt;/figcaption&gt;
+    
+    &lt;audio controls
+		src=&quot;/blog/96f71139fa5188892df7c6daa6f85a89/snare_1.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/1e02e4d4fcd56ef58a4e99669b80ff93/snare_2.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/b9baef55403470ee47fed7644d07a531/snare_3.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/5e311d1c040555f78e5f9b8bda36286c/snare_4.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Cymbals &lt;/figcaption&gt;
+    
+    &lt;audio controls
+		src=&quot;/blog/7d7c525d3c042a5ea5c93e2b6b2ca98d/cymb_1.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/4718bc478ebb9e9c83a3d4e64218a950/cymb_2.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/cb6ed75330cc5d300345e5822d905b6d/cymb_3.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/b8949068dcd7d2e133de3860fdd11e77/cymb_4.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+&lt;/figure&gt;
+&lt;h6&gt;Spherical interpolation&lt;/h6&gt;
+&lt;p&gt;Examples of spherical interpolation between two random points.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Kick drums &lt;/figcaption&gt;
+    
+    &lt;audio controls
+		src=&quot;/blog/cff98ed211a008978d87b3483b11d861/kick_1.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/2c3c967e0ef020c81973e2a56ccdb49b/kick_2.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/5e977d0c0ea3fb0238ae576d406ff789/kick_3.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/9a60b2965bcdf3201a5bab8513206e5a/kick_4.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Snare drums &lt;/figcaption&gt;
+    
+    &lt;audio controls
+		src=&quot;/blog/e882fc4a27160f9a21eb1f831189fc7b/snare_1.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/5786fa5f7d910e03879402574ab7ea73/snare_2.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/3663c4a2d0e89348b433a72cb3e2f2c1/snare_5.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/d32b01d0be791c6b34361accbbae8186/snare_4.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+&lt;/figure&gt;
+&lt;figure&gt;
+    &lt;figcaption&gt;Cymbals &lt;/figcaption&gt;
+    
+    &lt;audio controls
+		src=&quot;/blog/e36eb151bc142c5b74cedcea4747a651/cymb_1.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/3bbd32695a9a772fc1b275f5cc07ea8f/cymb_2.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/ec0000da4ddaa7c264f6b298890b255e/cymb_3.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+    &lt;audio controls
+		src=&quot;/blog/e302009306600dc87defe2ed2a3bd608/cymb_4.wav&quot;&gt;
+		
+	&lt;/audio&gt;
+	
+&lt;/figure&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;&lt;strong&gt;[1]&lt;/strong&gt;&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;&lt;strong&gt;&lt;a href=&quot;https://dafx2020.mdw.ac.at/proceedings/papers/DAFx2020_paper_45.pdf&quot;&gt;Drysdale, J., M. Tomczak, J. Hockman, Adversarial Synthesis of Drum Sounds. Proceedings of the 23rd International Conference on Digital Audio Effects (DAFX), 2020.&lt;/a&gt;&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;@inproceedings{drysdale2020ads,
+  title={Adversarial synthesis of drum sounds},
+  author={Drysdale, Jake and Tomczak, Maciej and Hockman, Jason},
+  booktitle = {Proceedings of the International Conference on Digital Audio Effects 
+  (DAFx)},
+  year={2020}
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Help&lt;/h2&gt;
+&lt;p&gt;Any questions please feel free to contact me on jake.drysdale@bcu.ac.uk&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Welcome!]]></title><description><![CDATA[Hello and welcome to my research blog. I am currently a PhD student in the Digital Media Technology Lab (DMT Lab) at Birmingham City…]]></description><link>https://jake-drysdale.github.io/blog/hello-world/</link><guid isPermaLink="false">https://jake-drysdale.github.io/blog/hello-world/</guid><pubDate>Mon, 20 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hello and welcome to my research blog. I am currently a PhD student in the Digital Media Technology Lab (DMT Lab) at Birmingham City University working on neural audio synthesis and automatic music generation. As an electronic musician, I am always on the lookout for new sounds and ways to express myself creatively through music. With a background in machine learning and artificial intelligence, my aim as a researcher is to help towards the development of
+data driven music production tools that can push the boundaries imposed by current technology. &lt;/p&gt;</content:encoded></item></channel></rss>

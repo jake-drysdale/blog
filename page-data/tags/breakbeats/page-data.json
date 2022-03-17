@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tag-index-js",
+    "path": "/tags/breakbeats/",
+    "result": {"data":{"site":{"siteMetadata":{"title":"Jake Drysdale"}},"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"excerpt":"Breakbeats are percussion-only passages that are primarily sourced from samples of Funk and Jazz recordings from 1960s to 1980s. Electronic…","fields":{"slug":"/breakbeat-manipulation/"},"frontmatter":{"date":"September 20, 2020","title":"Breakbeat Manipulation with GANs","description":"Breakbeat manipulation with GANs","tags":["breakbeats","gans"],"thumbnail":{"childImageSharp":{"fluid":{"src":"/blog/static/bdec2bbd375fa27cd5e2c452bbdad195/c02ec/system-overview.png","originalName":"system-overview.png"}}}}}}]}},"pageContext":{"tag":"breakbeats"}},
+    "staticQueryHashes": ["63159454"]}

@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-tag-index-js",
+    "path": "/tags/structure-analysis/",
+    "result": {"data":{"site":{"siteMetadata":{"title":"Jake Drysdale"}},"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"excerpt":"Modern loop-based electronic music (EM) is created through the activation of short audio recordings of instruments designed for seamless…","fields":{"slug":"/in-the-loop/"},"frontmatter":{"date":"March 17, 2022","title":"Improved Automatic Instrumentation Role Classification and Structural Analysis for Electronic Music Production","description":"Improved Automatic Instrumentation Role Classification and Structural Analysis for Electronic Music Production","tags":["structure-analysis","classification","AIRC"],"thumbnail":{"childImageSharp":{"fluid":{"src":"/blog/static/5982e1e95b82cb8ed07179bf611447e1/c02ec/em-template.png","originalName":"em-template.png"}}}}}}]}},"pageContext":{"tag":"structure-analysis"}},
+    "staticQueryHashes": ["63159454"]}
