@@ -71,6 +71,7 @@ For example, the introduction to the composition (bars 1--49) begins relatively 
  
 
 ###Dataset
+In order to evaluate how well our system can analyze the structure of professionally produced EM, we compiled a dataset of 10 compositions. The dataset covers several popular EM genres such as hip-hop, drum and bass, techno, house and garage (with a tempo range of 120-175 BPM). The tracks were collected from Soundcloud and Bandcamp and are available under a Creative Commons license. Ground truth annotations were obtained by listening through each composition and labelling the active instrumentation roles at 4-bar intervals. The activations for each track can be downloaded via the corresponsing link and the roles are order as follows: Bass (0), Drums (1), FX (2), Melody (3). 
 
 | Title                               | Artist         | Genre       | BPM | Source                                                                                            | Duration | Annotations |
 | ----------------------------------- | -------------- | ----------- | --- | ------------------------------------------------------------------------------------------------- | -------- | ----------- |
